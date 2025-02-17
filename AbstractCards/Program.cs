@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,11 +10,17 @@ namespace AbstractCards
     abstract class Cards
     {
         // Properties 
-        public abstract int number { get; set; }
+        public abstract int rank { get; set; }
         public abstract string type { get; set; }
 
         // Methods 
         public abstract string Display();
+
+        public void GameInfo()
+        {
+            Console.WriteLine("Rank: Determins how powerful the card is \nExample: (1 weakest - 10 strongest)\n" +
+                "\nType: Determines what kind of card \nExample: (Attack, Defense, Heal)\n");
+        }
     }
         
     internal class Program
@@ -22,30 +28,31 @@ namespace AbstractCards
 
         class Suit : Cards
         {
-            public override int number { get; set; }
+            public override int rank { get; set; }
             public override string type { get; set; } 
 
             public Suit()
             {
-                number = 0;
+                rank = 0;
                 type = string.Empty;
             }
 
             public Suit(int number, string type)
             {
-                this.number = number;
+                this.rank = number;
                 this.type = type;
             }
 
             public override string Display() 
             {
-                return $"Card: {type} \nNumber: {number}";
+                return $"Rank: {rank} \nType: {type}";
             }
         }
 
         static void Main(string[] args)
         {
-            Suit card1 = new Suit(5, "Spade");
+            Suit card1 = new Suit(8, "Attack");
+            card1.GameInfo();
             Console.WriteLine(card1.Display());
         }
     }
